@@ -1,0 +1,50 @@
+{
+    "anvil_cost": 2147483647,
+    "description": {
+        "translate": "impulser.enchantment.apply_impulse"
+    },
+    "effects": {
+        "minecraft:tick": [
+            {
+                "effect": {
+                    "type": "minecraft:run_function",
+                    "function": "impulser:pre"
+                }
+            },
+            {
+                "effect": {
+                    "type": "minecraft:apply_impulse",
+                    "direction": [0, 0, 1],
+                    "coordinate_scale": [1, 1, 1],
+                    "magnitude": {
+                        "type": "minecraft:linear",
+                        "base": 0,
+                        "per_level_above_first": 0.1
+                    }
+                }
+            },
+            {
+                "effect": {
+                    "type": "minecraft:run_function",
+                    "function": "impulser:post"
+                }
+            }
+        ]
+    },
+    "max_cost": {
+        "base": 2147483647,
+        "per_level_above_first": 0
+    },
+    "min_cost": {
+        "base": 2147483647,
+        "per_level_above_first": 0
+    },
+    "slots": [
+        "saddle"
+    ],
+    "max_level": 255,
+    "supported_items": [
+        "minecraft:saddle"
+    ],
+    "weight": 1
+}

@@ -1,0 +1,10 @@
+{
+    "function": "minecraft:set_enchantments",
+    "enchantments": {        
+        "impulser:apply_impulse": {
+            "type": "minecraft:storage",
+            "storage": "impulser:",
+            "path": "_.level"
+        }
+    }
+}
