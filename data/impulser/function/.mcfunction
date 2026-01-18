@@ -10,7 +10,7 @@
     execute if entity @s[type=!player] run return 0
 
 # 入力を計算
-    execute if data storage impulser: in[] run function impulser:calculate_absolute
+    execute if data storage impulser: in[] run function impulser:calculate_relative
     execute unless data storage impulser: in[] run function impulser:calculate_local
 
 # アイテムを編集
