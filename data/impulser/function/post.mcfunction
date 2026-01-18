@@ -1,10 +1,10 @@
 #> impulser:post
 
-#
-    item replace entity @s saddle with air
+# アイテムを再編集
+    item modify entity @s saddle impulser:clear_level
 
-    execute rotated as @n[type=marker, tag=ILD.Core.ApplyImpulse.PlayerRotation] run rotate @s ~ ~
+# 向きを戻す
+    execute rotated as @n[type=marker, tag=Impulser.PlayerRotation] run rotate @s ~ ~
 
-    kill @n[type=marker, tag=ILD.Core.ApplyImpulse.PlayerRotation]
-
-say post
+# お片付け
+    kill @n[type=marker, tag=Impulser.PlayerRotation]

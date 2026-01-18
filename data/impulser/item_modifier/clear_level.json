@@ -1,0 +1,6 @@
+{
+    "function": "set_enchantments",
+    "enchantments": {
+        "impulser:apply_impulse": 0
+    }
+}

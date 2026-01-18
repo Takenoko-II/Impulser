@@ -13,3 +13,6 @@
 
 # スコアボード
     scoreboard objectives add Impulser.Math dummy
+
+# 定数
+    scoreboard players set #-1 Impulser.Math -1
