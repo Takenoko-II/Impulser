@@ -1,9 +1,9 @@
 #> impulser:calculate_a
 
 # 入力のスコア化
-    execute store result score #X_I Impulser.Math run data get storage impulser: in[0] 1000
-    execute store result score #Y_I Impulser.Math run data get storage impulser: in[1] 1000
-    execute store result score #Z_I Impulser.Math run data get storage impulser: in[2] 1000
+    execute store result score #X_I Impulser.Math run data get storage impulser: in[0] 10000
+    execute store result score #Y_I Impulser.Math run data get storage impulser: in[1] 10000
+    execute store result score #Z_I Impulser.Math run data get storage impulser: in[2] 10000
 
 # 単位ベクトルの取得
     summon marker 0.0 0.0 0.0 {Tags: ["Impulser.VectorI"]}
@@ -34,27 +34,31 @@
 
 # 係数の算出
     scoreboard players operation #Strength Impulser.Math = #Max_I Impulser.Math
+
     scoreboard players operation #Strength Impulser.Math /= #Max_U Impulser.Math
 
-# プレイヤーの回転の調整
-    execute rotated as @n[type=marker, tag=Impulser.VectorU] run rotate @s ~ ~
+    execute if score #Strength Impulser.Math matches 255.. run scoreboard players set #Strength Impulser.Math 255
+
+# あとで使いやすいようにマーカーの向きを合わせておく
+    execute as @n[type=marker, tag=Impulser.VectorU] positioned 0.0 0.0 0.0 facing entity @s feet run rotate @s ~ ~
+
+# レベルの格納
+    data modify storage impulser: _ set value {level: -1}
+
+    execute store result storage impulser: _.level int 0.1 run scoreboard players get #Strength Impulser.Math
 
 # お片付け
     kill @n[type=marker, tag=Impulser.VectorI]
-    kill @n[type=marker, tag=Impulser.VectorU]
 
     scoreboard players reset #Max_I Impulser.Math
     scoreboard players reset #Max_U Impulser.Math
 
-    scoreboard players reset #X_I
-    scoreboard players reset #Y_I
-    scoreboard players reset #Z_I
+    scoreboard players reset #X_I Impulser.Math
+    scoreboard players reset #Y_I Impulser.Math
+    scoreboard players reset #Z_I Impulser.Math
 
-    scoreboard players reset #X_U
-    scoreboard players reset #Y_U
-    scoreboard players reset #Z_U
+    scoreboard players reset #X_U Impulser.Math
+    scoreboard players reset #Y_U Impulser.Math
+    scoreboard players reset #Z_U Impulser.Math
 
-# レベルの格納
-    data modify storage impulser: _ set value {}
-
-    execute store result storage impulser: _.level int 0.001 run scoreboard players get #Strength Impulser.Math
+    scoreboard players reset #Strength Impulser.Math
