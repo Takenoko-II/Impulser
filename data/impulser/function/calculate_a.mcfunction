@@ -1,4 +1,4 @@
-#> impulser:calculate
+#> impulser:calculate_a
 
 # 入力のスコア化
     execute store result score #X_I Impulser.Math run data get storage impulser: in[0] 1000
