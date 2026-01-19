@@ -19,6 +19,8 @@
     execute store result storage impulser: added[1] double 0.0001 run scoreboard players get #Y_I Impulser.Math
     execute store result storage impulser: added[2] double 0.0001 run scoreboard players get #Z_I Impulser.Math
 
+    execute unless items entity @s saddle saddle[custom_data~{impulser: {level: 0}}] run kill @n[type=marker, tag=Impulser.VectorU]
+
 # 単位ベクトルの取得
     summon marker 0.0 0.0 0.0 {Tags: ["Impulser.VectorI"]}
     data modify entity @n[type=marker, tag=Impulser.VectorI] Pos set from storage impulser: added
