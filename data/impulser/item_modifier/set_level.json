@@ -6,5 +6,6 @@
             "storage": "impulser:",
             "path": "_.level"
         }
-    }
+    },
+    "add": true
 }

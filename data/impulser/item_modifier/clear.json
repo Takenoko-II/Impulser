@@ -2,7 +2,8 @@
     {
         "function": "minecraft:set_enchantments",
         "enchantments": {
-            "impulser:apply_impulse": 0
+            "impulser:apply_impulse": 0,
+            "minecraft:vanishing_curse": 1
         }
     },
     {

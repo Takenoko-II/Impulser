@@ -66,8 +66,6 @@
     data modify storage impulser: _.vector[1] set from entity @n[type=marker, tag=Impulser.VectorI] Pos[1]
     data modify storage impulser: _.vector[2] set from entity @n[type=marker, tag=Impulser.VectorI] Pos[2]
 
-    tellraw @s {nbt: "equipment.saddle.components.minecraft:custom_data", entity: "@s"}
-
     item modify entity @s saddle impulser:save
 
 # お片付け
