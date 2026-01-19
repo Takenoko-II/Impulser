@@ -16,4 +16,3 @@
 
 # 定数
     scoreboard players set #-1 Impulser.Math -1
-    execute unless score #ID Impulser.Math matches -2147483648..2147483647 run scoreboard players set #ID Impulser.Math -2147483648

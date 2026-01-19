@@ -9,10 +9,6 @@
 # プレイヤー以外
     execute if entity @s[type=!player] run return 0
 
-# ID割り当て
-    execute unless score @s Impulser.Math = @s Impulser.Math run scoreboard players operation @s Impulser.Math = #ID Impulser.Math
-    scoreboard players add #ID Impulser.Math 1
-
 # サドル用意
     execute unless items entity @s saddle saddle run item replace entity @s saddle with saddle[ \
         equippable = { \
@@ -25,8 +21,7 @@
     ]
 
 # 保存された入力を取り出し
-    # ストレージに取り出し
-    data modify storage impulser: previous set value {level: 0, vector: [0d, 0d, 0d]}
+    data modify storage impulser: previous set value {level: 0, vector: [0d, 0d, 0d], direction: [0d, 0d, 0d]}
     data modify storage impulser: previous set from entity @s equipment.saddle.components.minecraft:custom_data.impulser
 
 # 入力を計算
