@@ -1,0 +1,17 @@
+[
+    {
+        "function": "minecraft:set_enchantments",
+        "enchantments": {
+            "impulser:apply_impulse": 0
+        }
+    },
+    {
+        "function": "minecraft:set_custom_data",
+        "tag": {
+            "impulser": {
+                "level": 0,
+                "vector": [0, 0, 0]
+            }
+        }
+    }
+]

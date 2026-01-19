@@ -5,9 +5,23 @@
     execute store result score #Y_I Impulser.Math run data get storage impulser: in[1] 10000
     execute store result score #Z_I Impulser.Math run data get storage impulser: in[2] 10000
 
+# 保存されたベクトルの加算
+    execute store result score #X_P Impulser.Math run data get storage impulser: previous.vector[0] 10000
+    execute store result score #Y_P Impulser.Math run data get storage impulser: previous.vector[1] 10000
+    execute store result score #Z_P Impulser.Math run data get storage impulser: previous.vector[2] 10000
+
+    scoreboard players operation #X_I Impulser.Math += #X_P Impulser.Math
+    scoreboard players operation #Y_I Impulser.Math += #Y_P Impulser.Math
+    scoreboard players operation #Z_I Impulser.Math += #Z_P Impulser.Math
+
+    data modify storage impulser: added set value [0d, 0d, 0d]
+    execute store result storage impulser: added[0] double 0.0001 run scoreboard players get #X_I Impulser.Math
+    execute store result storage impulser: added[1] double 0.0001 run scoreboard players get #Y_I Impulser.Math
+    execute store result storage impulser: added[2] double 0.0001 run scoreboard players get #Z_I Impulser.Math
+
 # 単位ベクトルの取得
     summon marker 0.0 0.0 0.0 {Tags: ["Impulser.VectorI"]}
-    data modify entity @n[type=marker, tag=Impulser.VectorI] Pos set from storage impulser: in
+    data modify entity @n[type=marker, tag=Impulser.VectorI] Pos set from storage impulser: added
     execute positioned 0.0 0.0 0.0 facing entity @n[type=marker, tag=Impulser.VectorI] feet run summon marker ^ ^ ^1 {Tags: ["Impulser.VectorU"]}
 
     execute store result score #X_U Impulser.Math run data get entity @n[type=marker, tag=Impulser.VectorU] Pos[0] 1000
@@ -43,9 +57,18 @@
     execute as @n[type=marker, tag=Impulser.VectorU] positioned 0.0 0.0 0.0 facing entity @s feet run rotate @s ~ ~
 
 # レベルの格納
-    data modify storage impulser: _ set value {level: -1}
+    data modify storage impulser: _ set value {level: -1, vector: [0d, 0d, 0d]}
 
     execute store result storage impulser: _.level int 0.1 run scoreboard players get #Strength Impulser.Math
+
+# ベクトルの保存
+    data modify storage impulser: _.vector[0] set from entity @n[type=marker, tag=Impulser.VectorI] Pos[0]
+    data modify storage impulser: _.vector[1] set from entity @n[type=marker, tag=Impulser.VectorI] Pos[1]
+    data modify storage impulser: _.vector[2] set from entity @n[type=marker, tag=Impulser.VectorI] Pos[2]
+
+    tellraw @s {nbt: "equipment.saddle.components.minecraft:custom_data", entity: "@s"}
+
+    item modify entity @s saddle impulser:save
 
 # お片付け
     kill @n[type=marker, tag=Impulser.VectorI]
@@ -61,4 +84,10 @@
     scoreboard players reset #Y_U Impulser.Math
     scoreboard players reset #Z_U Impulser.Math
 
+    scoreboard players reset #X_P Impulser.Math
+    scoreboard players reset #Y_P Impulser.Math
+    scoreboard players reset #Z_P Impulser.Math
+
     scoreboard players reset #Strength Impulser.Math
+
+    data remove storage impulser: added

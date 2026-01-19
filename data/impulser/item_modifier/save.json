@@ -1,0 +1,14 @@
+{
+    "function": "minecraft:copy_custom_data",
+    "source": {
+        "type": "minecraft:storage",
+        "source": "impulser:"
+    },
+    "ops": [
+        {
+            "source": "_",
+            "target": "impulser",
+            "op": "merge"
+        }
+    ]
+}
