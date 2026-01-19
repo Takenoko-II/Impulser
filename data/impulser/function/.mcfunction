@@ -9,6 +9,10 @@
 # プレイヤー以外
     execute if entity @s[type=!player] run return 0
 
+# ID割り当て
+    execute unless score @s Impulser.Math = @s Impulser.Math run scoreboard players operation @s Impulser.Math = #ID Impulser.Math
+    scoreboard players add #ID Impulser.Math 1
+
 # サドル用意
     execute unless items entity @s saddle saddle run item replace entity @s saddle with saddle[ \
         equippable = { \

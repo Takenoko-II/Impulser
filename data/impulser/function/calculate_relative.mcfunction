@@ -24,7 +24,9 @@
 # 単位ベクトルの取得
     summon marker 0.0 0.0 0.0 {Tags: ["Impulser.VectorI"]}
     data modify entity @n[type=marker, tag=Impulser.VectorI] Pos set from storage impulser: added
+
     execute positioned 0.0 0.0 0.0 facing entity @n[type=marker, tag=Impulser.VectorI] feet run summon marker ^ ^ ^1 {Tags: ["Impulser.VectorU"]}
+    scoreboard players operation @n[type=marker, tag=Impulser.VectorU] Impulser.Math = @s Impulser.Math
 
     execute store result score #X_U Impulser.Math run data get entity @n[type=marker, tag=Impulser.VectorU] Pos[0] 1000
     execute store result score #Y_U Impulser.Math run data get entity @n[type=marker, tag=Impulser.VectorU] Pos[1] 1000
